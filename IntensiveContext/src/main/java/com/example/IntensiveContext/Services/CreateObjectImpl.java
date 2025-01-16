@@ -13,7 +13,6 @@ public class CreateObjectImpl implements CreateObject {
   public <T> T createObject(Class<?> clazz) {
     Object obj;
     Constructor<?> constructor = clazz.getConstructors()[0];
-    Class<?>[] classes = constructor.getParameterTypes();
     try {
       obj = constructor.newInstance();
     } catch (InstantiationException e) {
