@@ -1,5 +1,6 @@
 package com.example.PracticePackage;
 
+//Простой неаннотированный класс для поиска в пакете PracticePackage
 public class NotAnnotatedClass {
   public NotAnnotatedClass(){}
 

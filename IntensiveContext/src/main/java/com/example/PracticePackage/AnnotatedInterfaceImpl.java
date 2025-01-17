@@ -1,5 +1,6 @@
 package com.example.PracticePackage;
 
+//Класс-реализация интерфейса AnnotatedInterface для поиска в пакете PracticePackage
 public class AnnotatedInterfaceImpl implements AnnotatedInterface{
 
   public AnnotatedInterfaceImpl(){}

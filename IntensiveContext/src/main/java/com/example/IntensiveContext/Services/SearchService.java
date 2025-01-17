@@ -12,11 +12,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+/** Класс, реализующий SearchInterface. */
 public class SearchService implements SearchInterface {
-
+  /** Поле хранения инстанса SearchService. */
+  private static SearchService INSTANCE;
+  /** Поле хранения корневого пути к классам проекта. */
   String[] classPathStr = System.getProperty("java.class.path").split(":");
-  GetClassImpl getClass = new GetClassImpl();
-  AnnotationSearchImpl annotationSearch = new AnnotationSearchImpl();
+  /** Поле хранения инстанса GetClassImpl. */
+  GetClassImpl getClass;
+  /** Поле хранения инстанса AnnotationSearchImpl. */
+  AnnotationSearchImpl annotationSearch;
 
   @Override
   public Class<?> findClass(String package_name, Class<?> classType) {
@@ -78,5 +83,19 @@ public class SearchService implements SearchInterface {
     }else{
       throw new InterfaceHasMoreThanOneImplementation("The "+ interfaceType + " has more that one method that implement it.");
     }
+  }
+
+  /** Приватный конструктор для создания объекта типа SearchService. */
+  private SearchService(){
+    annotationSearch = AnnotationSearchImpl.getInstance();
+    getClass = GetClassImpl.getInstance();
+  }
+
+  /** Метод для создания и получения инстанса SearchService. */
+  public static SearchService getInstance(){
+    if(INSTANCE==null){
+      INSTANCE = new SearchService();
+    }
+    return INSTANCE;
   }
 }

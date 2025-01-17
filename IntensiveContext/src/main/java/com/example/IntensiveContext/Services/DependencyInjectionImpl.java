@@ -1,13 +1,35 @@
 package com.example.IntensiveContext.Services;
 
+import com.example.DummyDataPackage.InjectDummyDataImpl;
 import com.example.IntensiveContext.Interfaces.DependencyInjection;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+/** Класс, реализующий DependencyInjection. */
 public class DependencyInjectionImpl implements DependencyInjection {
-  SearchService searchService = new SearchService();
-  CreateObjectImpl createObject = new CreateObjectImpl();
-  InjectDummyDataImpl injectDummyData = new InjectDummyDataImpl();
+  /** Поле хранения инстанса SearchService. */
+  SearchService searchService;
+  /** Поле хранения инстанса CreateObjectImpl. */
+  CreateObjectImpl createObject;
+  /** Поле хранения инстанса InjectDummyDataImpl. */
+  InjectDummyDataImpl injectDummyData;
+  /** Поле хранения инстанса DependencyInjectionImpl. */
+  private static DependencyInjectionImpl INSTANCE;
+
+  /** Приватный конструктор для создания объекта типа DependencyInjectionImpl. */
+  private DependencyInjectionImpl(){
+    searchService = SearchService.getInstance();
+    createObject = CreateObjectImpl.getInstance();
+    injectDummyData = InjectDummyDataImpl.getInstance();
+  }
+
+  /** Метод для создания и получения инстанса DependencyInjectionImpl. */
+  public static DependencyInjectionImpl getInstance(){
+    if(INSTANCE==null){
+      INSTANCE = new DependencyInjectionImpl();
+    }
+    return INSTANCE;
+  }
 
 
   @Override

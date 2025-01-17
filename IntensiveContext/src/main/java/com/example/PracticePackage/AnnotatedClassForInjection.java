@@ -2,6 +2,7 @@ package com.example.PracticePackage;
 
 import com.example.IntensiveContext.Annotations.IntensiveComponent;
 
+//Простой аннотированный класс для инъекции в другой класс в пакете PracticePackage
 @IntensiveComponent
 public class AnnotatedClassForInjection {
   String text;

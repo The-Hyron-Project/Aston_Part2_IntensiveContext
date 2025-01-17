@@ -2,6 +2,7 @@ package com.example.PracticePackage2;
 
 import com.example.IntensiveContext.Annotations.IntensiveComponent;
 
+//Тестовый класс для поиска несуществующего класса в пакете
 @IntensiveComponent
 public class AnnotatedSideClass {
 

@@ -3,11 +3,18 @@ package com.example.IntensiveContext.Services;
 import com.example.IntensiveContext.Interfaces.CreateObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 
+/** Класс, реализующий CreateObjectImpl. */
 public class CreateObjectImpl implements CreateObject {
-  AnnotationSearchImpl annotationSearch = new AnnotationSearchImpl();
+  /** Поле хранения инстанса CreateObjectImpl. */
+  private static CreateObjectImpl INSTANCE;
+  /** Поле хранения инстанса AnnotationSearchImpl. */
+  AnnotationSearchImpl annotationSearch;
 
+  /** Приватный конструктор для создания объекта типа CreateObjectImpl. */
+  private CreateObjectImpl(){
+    annotationSearch = AnnotationSearchImpl.getInstance();
+  };
 
   @Override
   public <T> T createObject(Class<?> clazz) {
@@ -23,5 +30,13 @@ public class CreateObjectImpl implements CreateObject {
       throw new RuntimeException(e);
     }
     return (T) obj;
+  }
+
+  /** Метод для создания и получения инстанса CreateObjectImpl. */
+  public static CreateObjectImpl getInstance(){
+    if(INSTANCE==null){
+      INSTANCE = new CreateObjectImpl();
+    }
+    return INSTANCE;
   }
 }

@@ -6,7 +6,12 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Класс, реализующий AnnotationSearchImpl. */
 public class AnnotationSearchImpl implements AnnotationSearch {
+  /** Поле хранения инстанса AnnotationSearchImpl. */
+  private static AnnotationSearchImpl INSTANCE;
+  /** Приватный конструктор для создания объекта типа AnnotationSearchImpl. */
+  private AnnotationSearchImpl(){};
 
   @Override
   public boolean isClassAnnotated(Class<?> clazz) {
@@ -37,5 +42,13 @@ public class AnnotationSearchImpl implements AnnotationSearch {
       }
     }
     return listOfFields;
+  }
+
+  /** Метод для создания и получения инстанса AnnotationSearchImpl. */
+  public static AnnotationSearchImpl getInstance(){
+    if(INSTANCE==null){
+      INSTANCE = new AnnotationSearchImpl();
+    }
+    return INSTANCE;
   }
 }

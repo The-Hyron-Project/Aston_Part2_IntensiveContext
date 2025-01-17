@@ -1,9 +1,12 @@
-package com.example.IntensiveContext.Services;
+package com.example.DummyDataPackage;
 
-import com.example.IntensiveContext.Interfaces.InjectDummyData;
+import com.example.IntensiveContext.Services.AnnotationSearchImpl;
 import java.lang.reflect.Field;
 
 public class InjectDummyDataImpl implements InjectDummyData {
+  private static InjectDummyDataImpl INSTANCE;
+
+  private InjectDummyDataImpl(){};
 
   @Override
   public Object injectDummyText(Object obj, String text) {
@@ -17,5 +20,12 @@ public class InjectDummyDataImpl implements InjectDummyData {
       throw new RuntimeException(e);
     }
     return obj;
+  }
+
+  public static InjectDummyDataImpl getInstance(){
+    if(INSTANCE==null){
+      INSTANCE = new InjectDummyDataImpl();
+    }
+    return INSTANCE;
   }
 }
